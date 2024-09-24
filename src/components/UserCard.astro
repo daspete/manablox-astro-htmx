@@ -10,7 +10,9 @@ const { user } = Astro.props
 
 <div>
     <div>
-        <img src={user.image} />
+        <img loading="lazy" src={user.image} class="w-full aspect-square object-contain object-center" />
     </div>
-    {user.firstName} {user.lastName}
+    <div class="text-center">
+        {user.firstName} {user.lastName}
+    </div>
 </div>

@@ -20,8 +20,8 @@ services:
       - .:/app
     networks:
       - manabloxnet
-    command: sh -c "yarn && exec yarn dev --host=0.0.0.0"
-    # command: sh -c "yarn && yarn build && exec yarn preview --host=0.0.0.0"
+    # command: sh -c "yarn && exec yarn dev --host=0.0.0.0"
+    command: sh -c "yarn && yarn build && exec yarn preview --host=0.0.0.0"
 
 networks:
   manabloxnet:
