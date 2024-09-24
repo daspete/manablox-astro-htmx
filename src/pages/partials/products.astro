@@ -1,0 +1,28 @@
+---
+import { getProducts } from '@libs/products'
+import ProductCard from '@components/ProductCard.astro'
+
+export const partial = true
+
+const searchTerm = Astro.url.searchParams.get('search') || ''
+const page = +(Astro.url.searchParams.get('page') || 1)
+const products = await getProducts({ page, searchTerm })
+---
+
+<div class='products mb-8 grid grid-cols-4 gap-8'>
+  {products.products.map((product) => <ProductCard product={product} />)}
+</div>
+{
+  products.total > products.limit + products.skip && (
+    <div class='next-products mt-4 flex justify-center'>
+      <button
+        hx-target='.next-products'
+        hx-swap='outerHTML'
+        hx-get={`/partials/products?page=${page + 1}&search=${searchTerm}`}
+        class='bg-orange-500 px-4 py-2 font-bold text-white'
+      >
+        Load more
+      </button>
+    </div>
+  )
+}

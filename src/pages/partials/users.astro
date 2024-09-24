@@ -1,0 +1,28 @@
+---
+import UserCard from '@components/UserCard.astro'
+import { getUsers } from '@libs/users'
+
+export const partial = true
+
+const searchTerm = Astro.url.searchParams.get('search') || ''
+const page = +(Astro.url.searchParams.get('page') || 1)
+const users = await getUsers({ page, searchTerm })
+---
+
+<div class='users mb-8 grid grid-cols-4 gap-8'>
+  {users.users.map((user) => <UserCard user={user} />)}
+</div>
+{
+  users.total > users.limit + users.skip && (
+    <div class='next-users mt-4 flex justify-center'>
+      <button
+        hx-target='.next-users'
+        hx-swap='outerHTML'
+        hx-get={`/partials/users?page=${page + 1}&search=${searchTerm}`}
+        class='bg-orange-500 px-4 py-2 font-bold text-white'
+      >
+        Load more
+      </button>
+    </div>
+  )
+}

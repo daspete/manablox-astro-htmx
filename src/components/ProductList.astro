@@ -1,0 +1,23 @@
+---
+import Products from '@pages/partials/products.astro'
+const searchTerm = Astro.url.searchParams.get('search') || ''
+---
+
+<form action='/' method='get' class='flex items-stretch gap-2 sticky top-8 px-4 py-2 bg-gray-200 shadow z-10'>
+  <label for='search' class="self-center">Search Term</label>
+  <input
+    id='search'
+    type='search'
+    name='search'
+    class='flex-1 border px-4 py-2'
+    value={searchTerm}
+    hx-get='/partials/products'
+    hx-trigger='search, keyup delay:200ms changed'
+    hx-target='.products-container'
+  />
+  <input type='submit' value='Search' class="bg-orange-500 text-white font-bold text-sm px-4" />
+</form>
+
+<div class='products-container container mx-auto mt-4'>
+  <Products />
+</div>

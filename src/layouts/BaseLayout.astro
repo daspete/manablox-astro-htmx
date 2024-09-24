@@ -1,0 +1,24 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import '@assets/css/style.css'
+---
+
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="topbar shadow sticky top-0 z-20 h-8 bg-gray-300 flex items-center gap-2 justify-between px-4">
+      <div>Some logo</div>
+      <div class="text-sm flex gap-2">
+        <a href="/products">Products</a>
+        <a href="/users">Users</a>
+      </div>
+    </div>
+    <div class="content relative">
+      <slot />
+    </div>
+  </body>
+</html>

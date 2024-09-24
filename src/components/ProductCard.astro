@@ -1,0 +1,26 @@
+---
+import type { Product } from '@libs/products'
+
+interface Props {
+    product: Product
+}
+
+const { product } = Astro.props
+---
+
+<div class='relative flex flex-col items-center justify-around rounded-lg shadow'>
+  <img loading='lazy' src={product.thumbnail} class='aspect-square w-full rounded-t-lg bg-black/10 object-contain object-center' />
+  <div class='flex flex-1 flex-col gap-2 p-4'>
+    <div class='font-black uppercase text-black/70'>
+      {product.title}
+    </div>
+    <div class='flex-1'>
+      {product.description}
+    </div>
+    <div class='text-lg font-bold'>
+      <span>&euro;</span>
+      {product.price}
+    </div>
+  </div>
+  <div class='absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-yellow-500 px-3 py-1 text-xs font-bold uppercase'>{product.category}</div>
+</div>

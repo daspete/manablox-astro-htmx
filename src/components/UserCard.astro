@@ -1,0 +1,16 @@
+---
+import type { User } from '@libs/users'
+
+interface Props {
+    user: User
+}
+
+const { user } = Astro.props
+---
+
+<div>
+    <div>
+        <img src={user.image} />
+    </div>
+    {user.firstName} {user.lastName}
+</div>
